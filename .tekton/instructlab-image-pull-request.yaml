@@ -106,8 +106,7 @@ spec:
       name: build-args-file
       type: string
     - default:
-      - linux/x86_64
-      - linux/arm64
+      - linux-gdnxlarge/amd64
       description: List of platforms to build the container images on. The available
         set of values is determined by the configuration of the multi-platform-controller.
       name: build-platforms
@@ -258,7 +257,7 @@ spec:
         value: $(params.build-image-index)
       - name: IMAGES
         value:
-        - $(tasks.build-images.results.IMAGE_REF[*])
+        - $(tasks.build-images.results.IMAGE_REF)
       runAfter:
       - build-images
       taskRef:
