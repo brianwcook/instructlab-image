@@ -105,12 +105,6 @@ spec:
       description: Path to a file with build arguments for buildah, see https://www.mankier.com/1/buildah-build#--build-arg-file
       name: build-args-file
       type: string
-    - default:
-      - linux-gdnxlarge/amd64
-      description: List of platforms to build the container images on. The available
-        set of values is determined by the configuration of the multi-platform-controller.
-      name: build-platforms
-      type: array
     results:
     - description: ""
       name: IMAGE_URL
@@ -197,13 +191,10 @@ spec:
         workspace: git-auth
       - name: netrc
         workspace: netrc
-    - matrix:
-        params:
-        - name: PLATFORM
-          value:
-          - $(params.build-platforms)
       name: build-images
       params:
+      - name: PLATFORM
+        value: linux-gdnxlarge/amd64
       - name: IMAGE
         value: $(params.output-image)
       - name: DOCKERFILE
