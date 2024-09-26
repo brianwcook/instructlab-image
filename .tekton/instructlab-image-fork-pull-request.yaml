@@ -28,6 +28,8 @@ spec:
     value: 5d
   - name: dockerfile
     value: Dockerfile
+  - name: platform
+    value: linux-gdnxlarge/amd64
   pipelineSpec:
     description: |
       This pipeline is ideal for building container images from a Containerfile while maintaining trust after pipeline customization.
@@ -195,6 +197,8 @@ spec:
       params:
       - name: IMAGE
         value: $(params.output-image)
+      - name: PLATFORM
+        value: $(params.platform)
       - name: DOCKERFILE
         value: $(params.dockerfile)
       - name: CONTEXT
@@ -223,7 +227,7 @@ spec:
         - name: name
           value: buildah-oci-ta
         - name: bundle
-          value: quay.io/konflux-ci/tekton-catalog/task-buildah-oci-ta:0.2@sha256:6620f885c459e0e062c44797a4fc7b0f28c54c117de3771234b065c76714f663
+          value: quay.io/konflux-ci/tekton-catalog/task-buildah-remotea-oci-ta:0.2@sha256:8e8cd24b52a74a75f2cefe67a1047d2c683f84aeb1211862843330bf4653edd3
         - name: kind
           value: task
         resolver: bundles
